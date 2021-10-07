@@ -15,86 +15,83 @@ res:2735
 res:273
 */
 
-int main () {
-	long int num1;
-	long int num2;
+int main () 
+{
+	long int num;
 	int modeofthetask = 0;
 	int isWork = 1;
-	printf("Please, choose the method you want to do with the number:\n\n");
-	printf("1-st method: Invert the entered number\n");
-	printf("2-nd method: Accumulate the sum of numbers of the entered number\n");
-	scanf_s("%d", &modeofthetask);
 
-	switch (modeofthetask) {
-	case 1:
-		printf("Hello! Let's inverse the number!\n");
-		printf("For exit - enter 0\n");
+	long int c = 0; //c is an inverted number in result
+	long int d = 0;
+
+	printf("Hello! This programm will help you to manipulate with the entered number!\n");
+	printf("Invert the number or accumulate the sum of numbers!\n\n");
+
+	while (isWork)
+	{
+		int isError = 0; //ошибки нет
 		
-		while (isWork) {
-			int isError = 0; //ошибки нет
-			do {
-				if (isError) printf("You entered the wrong number! Number must be positive! Try again, please.\n");
-				printf("input positive number: ");
-				scanf_s("%d", &num1);
+		do
+		{
+			if (isError) printf("You entered the wrong number! Number must be positive! Try again, please.\n");
+			printf("Input positive number:\n");
+			scanf_s("%d", &num);
 
-				if (num1 == 0) {
-					isWork = 0;
-					break; //прерывание цикла, выход из него
-				}
-				isError = (num1 < 0); //меняем статус ошибки
-			} while (isError);
-			if (!isWork) continue; //не завершаем остаток итерации, переходим к следующей итерации
-			//можно через break, но должно быть (выше) while (1) {
-			//continue с флагом 
-
-			//algorythm
-			long int c = 0; //c is an inverted number in result
-
-			while (num1) {
-				c *= 10;
-				c += num1 % 10;
-				num1 /= 10;
+			if (num == 0) 
+			{
+				isWork = 0;
+				break; //прерывание цикла, выход из него
 			}
-			//result
-			printf("Result is %d\n", c);
+			isError = (num < 0); //меняем статус ошибки
+
+
+			printf("\nPlease, choose the method you want to do with the number:\n\n");
+			printf("1-st method: Invert the entered number\n");
+			printf("2-nd method: Accumulate the sum of numbers of the entered number\n\n");
+			scanf_s("%d", &modeofthetask);
+
+			switch (modeofthetask)
+			{
+
+				case 1:
+					printf("\nLet's inverse the number!\n");
+					//algorythm
+					while (num) 
+					{
+						c *= 10;
+						c += num % 10;
+						num /= 10;
+					}
+					//result
+					printf("Result is %d\n\n", c);
+					printf("For exit - enter 0\n\n");
+					break;
+
+				case 2:
+					printf("\nLet's accumulate the sum of numbers of the entered number!\n");
+					//algorythm
+					while (num) 
+					{
+						d += num % 10;
+						num /= 10;
+					}
+					//result
+					printf("Result is %d\n\n", d);
+					printf("For exit - enter 0\n\n");
+					break;
+
+				default:
+					printf("You entered the variant that doesn't exist! Try again, please.\n");
+					break;
+
+			} 
 		}
-		printf("Goodbye!\n");
-			break;
-
-	case 2:
-		printf("Hello! Let's accumulate the sum of numbers of the entered number\n");
-		printf("For exit - enter 0\n");
-		
-		while (isWork) {
-			int isError = 0; //ошибки нет
-			do {
-				if (isError) printf("You entered the wrong number! Number must be positive! Try again, please.\n");
-				printf("input positive number: ");
-				scanf_s("%d", &num2);
-
-				if (num2 == 0) {
-					isWork = 0;
-					break; //прерывание цикла, выход из него
-				}
-				isError = (num2 < 0); //меняем статус ошибки
-			} while (isError);
-			if (!isWork) continue;
-
-			//algorythm
-			long int d = 0;
-			while (num2) {
-				d += num2 % 10;
-				num2 /= 10;
-			}
-			//result
-			printf("Result is %d\n", d);
-		}
-		printf("Goodbye!\n");
-		break;
-
-	default:
-		printf("You entered the variant that doesn't exist! Try again, please.\n");
-		break;
-	} 
+		while (isError);
+		if (!isWork) continue;
+		/*не завершаем остаток итерации, переходим к следующей итерации
+		можно через break, но должно быть (выше) while (1) {
+		continue с флагом */
+	}
+	printf("\nGoodbye!\n");
 	return 0;
 }
