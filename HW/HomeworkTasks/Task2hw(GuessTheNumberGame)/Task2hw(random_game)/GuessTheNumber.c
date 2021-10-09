@@ -18,14 +18,25 @@
 #include <math.h>
 
 int main() {
-
 	//input
-	int c, count_of_tries = 0, attempt = 0, ModeOfTheGame = 0; 
-	int num_for_guess = 0; //number that the computer will guess
+	 
+	//for all
+		int ModeOfTheGame = 0;
+		int count_of_tries = 0;
 
-	char equel = '=';
-	char greater = '>';
-	char lower = '<';
+	//for 1-st mode
+		int attempt = 0;
+		int rand_num; //
+	
+	//for 2-nd mode
+		int num_for_guess = 0; //number that the computer will guess
+		char compare;
+		char equel = '=';
+		char greater = '>';
+		char lower = '<';
+		int left = 1;
+		int right = 1000;
+		int current = 0;
 
 	printf("Choose the mode of the game: 1-st mode: You got to guess the number\n");
 	printf("\t\t\t     2-nd mode: The computer got to guess the number\n");
@@ -34,21 +45,21 @@ int main() {
 	switch (ModeOfTheGame) {
 		case 1:
 			printf("Welcome!\nYou gotta guess the number that the computer picked in range between 1 to 1000\n");
-			srand(time(NULL));
-			c = 1 + rand() % 1000; //я беру остаток от делени€ диапозона функции rand() на 1000 и прибавл€ю 1, чтобы установить нужный диапозон, т.е. от 1 до 1000.
+			srand(time(0));
+			rand_num = 1 + rand() % 1000; //я беру остаток от делени€ диапозона функции rand() на 1000 и прибавл€ю 1, чтобы установить нужный диапозон, т.е. от 1 до 1000.
 			//printf("%d\n", c); //„исло, загаданное компьютером
 			printf("The computer has picked the number in range of 1 to 1000!\nTry to guess it! Good luck!\nEnter the number You think the computer has picked: ");
 		again:
 			scanf_s("%d", &attempt);
 			while (attempt > 0) {
 				if ((attempt >= 1) && (attempt <= 1000)) {
-					if (attempt == c) {
-						printf("\nCongratulations! You guessed the number!\nThe number for guessing was: %d\n", c);
+					if (attempt == rand_num) {
+						printf("\nCongratulations! You guessed the number!\nThe number for guessing was: %d\n", rand_num);
 						count_of_tries++;
 						break;
 					}
 					else
-						if (attempt > c) {
+						if (attempt > rand_num) {
 							printf("The number < %d, try again: ", attempt);
 							count_of_tries++;
 							goto again;
@@ -66,46 +77,38 @@ int main() {
 					goto again;
 				}
 			}
-			break;
+		break;
 
 		case 2:
 			printf("Welcome!\nThe computer will try to guess the number that you'd pick for guessing\n");
 			printf("Choose the number from 1 to 1000: ");
-		again1:
 			scanf_s("%d", &num_for_guess);
-			srand(time(NULL));
-			c = 1 + rand() % 1000;
-
-			printf("Computer thinks this number is %d\n", c);
-			printf("Is it right?\n");
-			while (num_for_guess > 0) {
-				/*if ((num_for_guess >= 1) && (num_for_guess <= 1000)) {
-					if (c == num_for_guess) {
-						printf("The computer guessed the number! It was %d\n", num_for_guess);
+			while ((num_for_guess >= 1) && (num_for_guess <=1000)) {
+				current = (left + right) / 2;
+				printf("\nComputer thinks this number is %d\nIs it right?\n", current);
+				scanf_s("%c", &compare, 1);
+				if (compare == equel) {
+					printf("The computer guessed the number! It was %d\n", num_for_guess);
+					count_of_tries++;
+					break;
+				}
+				else
+					if (compare == greater) {
+						left = current + 1;
 						count_of_tries++;
 					}
-					else 
-						if (c > num_for_guess) {
-							printf("");
-							count_of_tries++;
-						}
-						else {
-							printf("");
-							count_of_tries++;
-						}
-				}
-				else {
-					printf("You entered the wrong number! The range is 1 to 1000.\nEnter the number again, please: ");
-					goto again1;
-				}*/
+					else (compare == lower); {
+						right = current - 1;
+						count_of_tries++;
+					}
 			}
-			break;
+		break;
 
 		default:
-			printf("You entered the variant that doesn't exist! Try again, please.\n");
-			break;
+				printf("You entered the variant that doesn't exist! Try again, please.\n");
+				break;
 	}
-	printf("By the way the quantity of tries is: %d\n", count_of_tries);
+	printf("The quantity of tries is: %d\n", count_of_tries);
 	printf("Goodbye!\n");
 	return 0;
 }
