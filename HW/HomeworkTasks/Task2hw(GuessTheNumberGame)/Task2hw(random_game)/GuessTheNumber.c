@@ -86,7 +86,7 @@ int main() {
 			while ((num_for_guess >= 1) && (num_for_guess <=1000)) {
 				current = (left + right) / 2;
 				printf("\nComputer thinks this number is %d\nIs it right?\n", current);
-				scanf_s("%c", &compare, 1);
+				scanf_s("%c", &compare);
 				if (compare == equel) {
 					printf("The computer guessed the number! It was %d\n", num_for_guess);
 					count_of_tries++;
