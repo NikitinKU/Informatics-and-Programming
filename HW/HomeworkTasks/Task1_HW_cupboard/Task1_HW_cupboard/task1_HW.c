@@ -23,11 +23,26 @@ int main() {
 	float dvp, dsp, wood;
 	float stenka, bokovini, krishki, dveri, polki, shkaf;
 	int iswork = 1;
+	float eps = 0.001;
+
+	//t - thickness 
+	float t_of_stenka = 0.005;
+	float t_of_bokovini = 0.015;
+	float t_of_krishki = 0.015;
+	float t_of_dveri = 0.01;
+	float t_of_polki = 0.015;
+	float shelf_space = 0.4;
+	int quantity_of_component = 2;
 
 	printf("Input the height (from 1.8 to 2.2 meters), width (from 0.8 to 1.2 meters), deepness (from 0.5 to 0.9 meters) (using spacebar)\n");
 	while (iswork) {
 		scanf_s("%f %f %f", &h, &w, &d);
-		if ((h >= 1.8) && (h <= 2.2) && (w >= 0.8) && (w <= 1.2) && (d >= 0.5) && (d <= 0.9)) {
+		if (((h - eps >= 1.8) || (h + eps >= 1.8)) && 
+			((h - eps <= 2.2) || (h + eps <= 2.2)) && 
+			((w - eps >= 0.8) || (w + eps >= 0.8)) && 
+			((w - eps <= 1.2) || (w + eps <= 1.2)) && 
+			((d - eps >= 0.5) || (d + eps >= 0.5)) &&
+			((d - eps <= 0.9) || (d + eps <= 0.9))) {
 			iswork = 0;
 			break;
 		}
@@ -42,12 +57,13 @@ int main() {
 	printf("Parameters: ");
 	scanf_s("%f %f %f", &dvp, &dsp, &wood);
 
-	stenka = (h * w * 0.005) * dvp;
-	bokovini = ((h * d * 0.015) * dsp) * 2;
-	krishki = ((w * d * 0.015) * dsp) * 2;
-	dveri = ((h * w * 0.01) * wood) * 2;
-	polki = (h / 0.4 - 1) * (((w - 0.03) * d * 0.015) * dsp);
+	stenka = (h * w * t_of_stenka) * dvp;
+	bokovini = ((h * d * t_of_bokovini) * dsp) * quantity_of_component;
+	krishki = ((w * d * t_of_krishki) * dsp) * quantity_of_component;
+	dveri = ((h * w * t_of_dveri) * wood) * quantity_of_component;
+	polki = (h / shelf_space - 1) * (((w - (t_of_bokovini * 2)) * d * t_of_polki) * dsp);
 	shkaf = stenka + bokovini + krishki + dveri + polki;
 	printf("The weight of the cupboard is: %f kg.", shkaf);
+
 	return 0;
 }
