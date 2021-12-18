@@ -1,7 +1,0 @@
-﻿  GuessTheNumber.c
-C:\Git Hub\NikitinKU\Informatics-and-Programming\HW\HomeworkTasks\Task2hw(GuessTheNumberGame)\Task2hw(random_game)\GuessTheNumber.c(48,17): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Git Hub\NikitinKU\Informatics-and-Programming\HW\HomeworkTasks\Task2hw(GuessTheNumberGame)\Task2hw(random_game)\GuessTheNumber.c(89,13): warning C4473: "scanf_s": передано недостаточно аргументов для строки формата
-C:\Git Hub\NikitinKU\Informatics-and-Programming\HW\HomeworkTasks\Task2hw(GuessTheNumberGame)\Task2hw(random_game)\GuessTheNumber.c(89,13): message : заполнители и их параметры ожидают переменное число аргументов в количестве 2, но было предоставлено 1
-C:\Git Hub\NikitinKU\Informatics-and-Programming\HW\HomeworkTasks\Task2hw(GuessTheNumberGame)\Task2hw(random_game)\GuessTheNumber.c(89,13): message : отсутствующий вариативный аргумент "2" требуется для строки форматирования "%c"
-C:\Git Hub\NikitinKU\Informatics-and-Programming\HW\HomeworkTasks\Task2hw(GuessTheNumberGame)\Task2hw(random_game)\GuessTheNumber.c(89,13): message : этот аргумент используется в качестве размера буфера
-  Task2hw(random_game).vcxproj -> C:\Git Hub\NikitinKU\Informatics-and-Programming\HW\HomeworkTasks\Task2hw(GuessTheNumberGame)\Debug\Task2hw(random_game).exe
